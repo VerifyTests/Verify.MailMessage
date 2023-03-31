@@ -1,11 +1,10 @@
 # <img src="/src/icon.png" height="30px"> Verify.MailMessage
 
 [![Discussions](https://img.shields.io/badge/Verify-Discussions-yellow?svg=true&label=)](https://github.com/orgs/VerifyTests/discussions)
-[![Build status](https://ci.appveyor.com/api/projects/status/3oa1pc52a38ncma6?svg=true)](https://ci.appveyor.com/project/SimonCropp/verify-mailmessage)
+[![Build status](https://ci.appveyor.com/api/projects/status/cpmnux3i0euge195?svg=true)](https://ci.appveyor.com/project/SimonCropp/verify-mailmessage)
 [![NuGet Status](https://img.shields.io/nuget/v/Verify.MailMessage.svg)](https://www.nuget.org/packages/Verify.MailMessage/)
 
 Extends [Verify](https://github.com/VerifyTests/Verify) to allow verification of [MailMessage](https://github.com/Abc-Arbitrage/ZeroLog).
-
 
 
 ## NuGet package
@@ -164,3 +163,7 @@ Results in:
 <sup><a href='/src/Tests/Tests.MailMessage.verified.txt#L1-L7' title='Snippet source file'>snippet source</a> | <a href='#snippet-Tests.MailMessage.verified.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
+
+## Icon
+
+[Mail](https://thenounproject.com/icon/mail-5633084/)  from [The Noun Project](https://thenounproject.com).
