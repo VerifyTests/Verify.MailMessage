@@ -1,0 +1,4 @@
+﻿{
+  DispositionType: attachment,
+  FileName: filename.jpg
+}

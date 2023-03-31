@@ -1,0 +1,11 @@
+﻿{
+  DispositionType: inline,
+  FileName: filename.jpg,
+  CreationDate: DateTime_1,
+  ModificationDate: DateTime_2,
+  ReadDate: DateTime_3,
+  Size: 2,
+  Parameters: {
+    key: value
+  }
+}

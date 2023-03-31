@@ -1,0 +1,8 @@
+﻿{
+  Name: name.txt,
+  ContentType: {
+    MediaType: text/html,
+    Name: name.txt,
+    CharSet: utf-8
+  }
+}

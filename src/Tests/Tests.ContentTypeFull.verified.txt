@@ -1,0 +1,9 @@
+﻿{
+  MediaType: text/html,
+  Name: name.txt,
+  CharSet: utf-8,
+  Boundary: the boundary,
+  Parameters: {
+    key: value
+  }
+}

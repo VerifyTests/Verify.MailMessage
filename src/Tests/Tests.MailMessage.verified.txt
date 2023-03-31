@@ -1,0 +1,7 @@
+﻿{
+  From: from@mail.com,
+  To: to@mail.com,
+  Subject: The subject,
+  IsBodyHtml: false,
+  Body: The body
+}
