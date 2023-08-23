@@ -2,7 +2,6 @@
   <PropertyGroup>
     <TargetFrameworks>net48;net7.0</TargetFrameworks>
     <OutputType>Library</OutputType>
-    <RootNamespace>Verify.ZeroLog</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Argon" Version="0.7.2" />
