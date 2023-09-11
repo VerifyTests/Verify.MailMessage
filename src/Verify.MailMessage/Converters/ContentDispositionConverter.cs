@@ -29,6 +29,7 @@ class ContentDispositionConverter :
             writer.WriteMember(disposition, disposition.Size, "Size");
         }
 
+        // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
         if (disposition.Parameters != null)
         {
             var parameters = new Dictionary<string, string?>();

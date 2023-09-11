@@ -14,13 +14,11 @@ public static class VerifyMailMessage
         Initialized = true;
 
         InnerVerifier.ThrowIfVerifyHasBeenRun();
-        VerifierSettings.AddExtraSettings(_ =>
-        {
-            _.Converters.Add(new ContentDispositionConverter());
-            _.Converters.Add(new ContentTypeConverter());
-            _.Converters.Add(new MailAddressConverter());
-            _.Converters.Add(new MailAttachmentConverter());
-            _.Converters.Add(new MailMessageConverter());
-        });
+        var converters = Argon.DefaultContractResolver.Converters;
+        converters.Add(new ContentDispositionConverter());
+        converters.Add(new ContentTypeConverter());
+        converters.Add(new MailAddressConverter());
+        converters.Add(new MailAttachmentConverter());
+        converters.Add(new MailMessageConverter());
     }
 }
