@@ -12,6 +12,6 @@
     <PackageReference Include="Verify.DiffPlex" Version="2.2.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.2" />
     <ProjectReference Include="..\Verify.MailMessage\Verify.MailMessage.csproj" />
-    <PackageReference Include="ProjectDefaults" Version="1.0.98" PrivateAssets="all" />
+    <PackageReference Include="ProjectDefaults" Version="1.0.99" PrivateAssets="all" />
   </ItemGroup>
 </Project>
