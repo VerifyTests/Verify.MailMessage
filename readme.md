@@ -98,10 +98,7 @@ Results in:
 public Task MailAttachment()
 {
     var attachment = new Attachment(
-        new MemoryStream(new byte[]
-        {
-            1
-        }),
+        new MemoryStream("file content"u8.ToArray()),
         new ContentType("text/html; charset=utf-8"))
     {
         Name = "name.txt"
@@ -109,7 +106,7 @@ public Task MailAttachment()
     return Verify(attachment);
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L69-L86' title='Snippet source file'>snippet source</a> | <a href='#snippet-mailattachment' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L69-L83' title='Snippet source file'>snippet source</a> | <a href='#snippet-mailattachment' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Results in: 
@@ -147,7 +144,7 @@ public Task MailMessage()
     return Verify(mail);
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L104-L117' title='Snippet source file'>snippet source</a> | <a href='#snippet-mailmessage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L98-L111' title='Snippet source file'>snippet source</a> | <a href='#snippet-mailmessage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Results in: 

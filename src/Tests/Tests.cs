@@ -72,10 +72,7 @@ public class Tests
     public Task MailAttachment()
     {
         var attachment = new Attachment(
-            new MemoryStream(new byte[]
-            {
-                1
-            }),
+            new MemoryStream("file content"u8.ToArray()),
             new ContentType("text/html; charset=utf-8"))
         {
             Name = "name.txt"
@@ -89,10 +86,7 @@ public class Tests
     public Task MailAttachmentFull()
     {
         var attachment = new Attachment(
-            new MemoryStream(new byte[]
-            {
-                1
-            }),
+            new MemoryStream("file content"u8.ToArray()),
             new ContentType("text/html; charset=utf-8"))
         {
             Name = "name.txt",
@@ -156,10 +150,8 @@ public class Tests
             DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure | DeliveryNotificationOptions.Delay,
             Attachments =
             {
-                new Attachment(new MemoryStream(new byte[]
-                    {
-                        1
-                    }),
+                new Attachment(
+                    new MemoryStream("file content"u8.ToArray()),
                     new ContentType("text/html; charset=utf-8"))
                 {
                     Name = "name.txt"
