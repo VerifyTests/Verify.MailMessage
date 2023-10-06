@@ -50,13 +50,13 @@
             return;
         }
 
-        if (addresses.Count > 1)
+        if (addresses.Count == 1)
         {
-            writer.WriteMember(mail, addresses, name);
+            writer.WriteMember(mail, addresses[0], name);
         }
         else
         {
-            writer.WriteMember(mail, addresses[0], name);
+            writer.WriteMember(mail, addresses, name);
         }
     }
 }
