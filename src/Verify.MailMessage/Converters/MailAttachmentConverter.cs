@@ -1,7 +1,4 @@
-﻿using System.Net.Mail;
-using System.Net.Mime;
-
-class MailAttachmentConverter :
+﻿class MailAttachmentConverter :
     WriteOnlyJsonConverter<Attachment>
 {
     public override void Write(VerifyJsonWriter writer, Attachment attachment)
@@ -15,6 +12,12 @@ class MailAttachmentConverter :
         if (attachment.TransferEncoding != TransferEncoding.Base64)
         {
             writer.WriteMember(attachment, attachment.TransferEncoding, "TransferEncoding");
+        }
+
+        if (ContentTypes.IsText(attachment.ContentType.MediaType, out _))
+        {
+            using var reader = new StreamReader(attachment.ContentStream);
+            writer.WriteMember(attachment, reader.ReadToEnd(), "Content");
         }
 
         writer.WriteEndObject();

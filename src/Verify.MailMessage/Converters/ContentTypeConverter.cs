@@ -1,6 +1,4 @@
-﻿using System.Net.Mime;
-
-class ContentTypeConverter :
+﻿class ContentTypeConverter :
     WriteOnlyJsonConverter<ContentType>
 {
     public override void Write(VerifyJsonWriter writer, ContentType contentType)

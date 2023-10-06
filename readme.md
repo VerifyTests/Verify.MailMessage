@@ -120,10 +120,11 @@ Results in:
     MediaType: text/html,
     Name: name.txt,
     CharSet: utf-8
-  }
+  },
+  Content: file content
 }
 ```
-<sup><a href='/src/Tests/Tests.MailAttachment.verified.txt#L1-L8' title='Snippet source file'>snippet source</a> | <a href='#snippet-Tests.MailAttachment.verified.txt' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.MailAttachment.verified.txt#L1-L9' title='Snippet source file'>snippet source</a> | <a href='#snippet-Tests.MailAttachment.verified.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 

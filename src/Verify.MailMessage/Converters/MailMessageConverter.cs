@@ -1,7 +1,4 @@
-﻿using System.Net.Mail;
-using System.Net.Mime;
-
-class MailMessageConverter :
+﻿class MailMessageConverter :
     WriteOnlyJsonConverter<MailMessage>
 {
     public override void Write(VerifyJsonWriter writer, MailMessage mail)
@@ -10,57 +7,10 @@ class MailMessageConverter :
 
         writer.WriteMember(mail, mail.From, "From");
         writer.WriteMember(mail, mail.Sender, "Sender");
-        var to = mail.To;
-        if (to.Any())
-        {
-            if (to.Count > 1)
-            {
-                writer.WriteMember(mail, to, "To");
-            }
-            else
-            {
-                writer.WriteMember(mail, to[0], "To");
-            }
-        }
-
-        var cc = mail.CC;
-        if (cc.Any())
-        {
-            if (cc.Count > 1)
-            {
-                writer.WriteMember(mail, cc, "Cc");
-            }
-            else
-            {
-                writer.WriteMember(mail, cc[0], "Cc");
-            }
-        }
-
-        var bcc = mail.Bcc;
-        if (bcc.Any())
-        {
-            if (bcc.Count > 1)
-            {
-                writer.WriteMember(mail, bcc, "Bcc");
-            }
-            else
-            {
-                writer.WriteMember(mail, bcc[0], "Bcc");
-            }
-        }
-
-        var reply = mail.ReplyToList;
-        if (reply.Any())
-        {
-            if (reply.Count > 1)
-            {
-                writer.WriteMember(mail, reply, "ReplyTo");
-            }
-            else
-            {
-                writer.WriteMember(mail, reply[0], "ReplyTo");
-            }
-        }
+        WriteAddresses(writer, mail, mail.To, "To");
+        WriteAddresses(writer, mail, mail.CC, "Cc");
+        WriteAddresses(writer, mail, mail.Bcc, "Bcc");
+        WriteAddresses(writer, mail, mail.ReplyToList, "ReplyTo");
 
         if (mail.Priority != MailPriority.Normal)
         {
@@ -89,8 +39,24 @@ class MailMessageConverter :
 
         writer.WriteMember(mail, mail.IsBodyHtml, "IsBodyHtml");
         writer.WriteMember(mail, mail.Body, "Body");
-
         writer.WriteMember(mail, mail.Attachments, "Attachments");
         writer.WriteEndObject();
+    }
+
+    static void WriteAddresses(VerifyJsonWriter writer, MailMessage mail, MailAddressCollection addresses, string name)
+    {
+        if (!addresses.Any())
+        {
+            return;
+        }
+
+        if (addresses.Count > 1)
+        {
+            writer.WriteMember(mail, addresses, name);
+        }
+        else
+        {
+            writer.WriteMember(mail, addresses[0], name);
+        }
     }
 }
