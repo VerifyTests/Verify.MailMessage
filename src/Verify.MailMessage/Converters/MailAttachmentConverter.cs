@@ -8,16 +8,22 @@
         writer.WriteMember(attachment, attachment.Name, "Name");
         writer.WriteMember(attachment, attachment.NameEncoding, "NameEncoding");
         writer.WriteMember(attachment, attachment.ContentType, "ContentType");
+        writer.WriteMember(attachment, attachment.ContentId, "ContentId");
 
         if (attachment.TransferEncoding != TransferEncoding.Base64)
         {
             writer.WriteMember(attachment, attachment.TransferEncoding, "TransferEncoding");
         }
 
-        if (ContentTypes.IsText(attachment.ContentType.MediaType, out _))
+        writer.WriteMember(attachment, attachment.ContentDisposition, "ContentDisposition");
+
+        if (attachment.TryGetContent(out var content))
         {
-            using var reader = new StreamReader(attachment.ContentStream);
-            writer.WriteMember(attachment, reader.ReadToEnd(), "Content");
+            writer.WriteMember(attachment, content, "Content");
+        }
+        else
+        {
+            writer.WriteMember(attachment, "binary", "Content");
         }
 
         writer.WriteEndObject();
