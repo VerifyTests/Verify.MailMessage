@@ -95,6 +95,36 @@ public class Tests
         return Verify(attachment);
     }
 
+    #region AlternateView
+
+    [Fact]
+    public Task AlternateView()
+    {
+        var view = new AlternateView(
+            new MemoryStream("file content"u8.ToArray()),
+            new ContentType("text/html; charset=utf-8"))
+        {
+            ContentId = "the content id"
+        };
+        return Verify(view);
+    }
+
+    #endregion
+
+    [Fact]
+    public Task AlternateViewFull()
+    {
+        var view = new AlternateView(
+            new MemoryStream("file content"u8.ToArray()),
+            new ContentType("text/html; charset=utf-8"))
+        {
+            ContentId = "the content id",
+            BaseUri = new("http://url"),
+            TransferEncoding = TransferEncoding.EightBit,
+        };
+        return Verify(view);
+    }
+
     #region MailMessage
 
     [Fact]

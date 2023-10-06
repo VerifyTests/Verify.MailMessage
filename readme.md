@@ -121,10 +121,14 @@ Results in:
     Name: name.txt,
     CharSet: utf-8
   },
+  ContentId: Guid_1,
+  ContentDisposition: {
+    DispositionType: attachment
+  },
   Content: file content
 }
 ```
-<sup><a href='/src/Tests/Tests.MailAttachment.verified.txt#L1-L9' title='Snippet source file'>snippet source</a> | <a href='#snippet-Tests.MailAttachment.verified.txt' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.MailAttachment.verified.txt#L1-L13' title='Snippet source file'>snippet source</a> | <a href='#snippet-Tests.MailAttachment.verified.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
@@ -145,7 +149,7 @@ public Task MailMessage()
     return Verify(mail);
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L98-L111' title='Snippet source file'>snippet source</a> | <a href='#snippet-mailmessage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L128-L141' title='Snippet source file'>snippet source</a> | <a href='#snippet-mailmessage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Results in: 

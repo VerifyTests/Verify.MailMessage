@@ -1,0 +1,10 @@
+﻿{
+  BaseUri: http://url/,
+  ContentType: {
+    MediaType: text/html,
+    CharSet: utf-8
+  },
+  ContentId: the content id,
+  TransferEncoding: EightBit,
+  Content: file content
+}

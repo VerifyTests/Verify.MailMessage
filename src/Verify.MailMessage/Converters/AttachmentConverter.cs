@@ -1,4 +1,4 @@
-﻿class MailAttachmentConverter :
+﻿class AttachmentConverter :
     WriteOnlyJsonConverter<Attachment>
 {
     public override void Write(VerifyJsonWriter writer, Attachment attachment)

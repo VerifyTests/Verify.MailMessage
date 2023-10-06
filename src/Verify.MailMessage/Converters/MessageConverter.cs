@@ -1,4 +1,4 @@
-﻿class MailMessageConverter :
+﻿class MessageConverter :
     WriteOnlyJsonConverter<MailMessage>
 {
     public override void Write(VerifyJsonWriter writer, MailMessage mail)
@@ -40,6 +40,7 @@
         writer.WriteMember(mail, mail.IsBodyHtml, "IsBodyHtml");
         writer.WriteMember(mail, mail.Body, "Body");
         writer.WriteMember(mail, mail.Attachments, "Attachments");
+        writer.WriteMember(mail, mail.AlternateViews, "AlternateViews");
         writer.WriteEndObject();
     }
 
