@@ -1,7 +1,4 @@
-﻿using System.Net.Mail;
-using EmptyFiles;
-
-namespace VerifyTests;
+﻿namespace VerifyTests;
 
 public static class VerifyMailMessage
 {
@@ -11,10 +8,11 @@ public static class VerifyMailMessage
         [
         new ContentDispositionConverter(),
         new ContentTypeConverter(),
-        new MailAddressConverter(),
-        new MailAttachmentConverter(),
         new AlternateViewConverter(),
-        new MailMessageConverter(),
+        new AddressConverter(),
+        new AttachmentConverter(),
+        new AlternateViewConverter(),
+        new MessageConverter(),
         ];
 
     public static void Initialize()
