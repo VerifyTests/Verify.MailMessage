@@ -1,14 +1,10 @@
 ﻿{
-  Name: name.txt,
+  BaseUri: http://url/,
   ContentType: {
     MediaType: text/html,
-    Name: name.txt,
     CharSet: utf-8
   },
-  ContentId: Guid_1,
+  ContentId: the content id,
   TransferEncoding: EightBit,
-  ContentDisposition: {
-    DispositionType: attachment
-  },
   Content: file content
 }

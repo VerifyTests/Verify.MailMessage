@@ -98,10 +98,7 @@ Results in:
 public Task MailAttachment()
 {
     var attachment = new Attachment(
-        new MemoryStream(new byte[]
-        {
-            1
-        }),
+        new MemoryStream("file content"u8.ToArray()),
         new ContentType("text/html; charset=utf-8"))
     {
         Name = "name.txt"
@@ -109,7 +106,7 @@ public Task MailAttachment()
     return Verify(attachment);
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L69-L86' title='Snippet source file'>snippet source</a> | <a href='#snippet-mailattachment' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L69-L83' title='Snippet source file'>snippet source</a> | <a href='#snippet-mailattachment' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Results in: 
@@ -123,10 +120,15 @@ Results in:
     MediaType: text/html,
     Name: name.txt,
     CharSet: utf-8
-  }
+  },
+  ContentId: Guid_1,
+  ContentDisposition: {
+    DispositionType: attachment
+  },
+  Content: file content
 }
 ```
-<sup><a href='/src/Tests/Tests.MailAttachment.verified.txt#L1-L8' title='Snippet source file'>snippet source</a> | <a href='#snippet-Tests.MailAttachment.verified.txt' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.MailAttachment.verified.txt#L1-L13' title='Snippet source file'>snippet source</a> | <a href='#snippet-Tests.MailAttachment.verified.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
@@ -147,7 +149,7 @@ public Task MailMessage()
     return Verify(mail);
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L104-L117' title='Snippet source file'>snippet source</a> | <a href='#snippet-mailmessage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L128-L141' title='Snippet source file'>snippet source</a> | <a href='#snippet-mailmessage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Results in: 

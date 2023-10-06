@@ -13,6 +13,7 @@ public static class VerifyMailMessage
         new ContentTypeConverter(),
         new MailAddressConverter(),
         new MailAttachmentConverter(),
+        new AlternateViewConverter(),
         new MailMessageConverter(),
         ];
 

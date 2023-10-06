@@ -1,6 +1,4 @@
-﻿using System.Net.Mime;
-
-class ContentDispositionConverter :
+﻿class ContentDispositionConverter :
     WriteOnlyJsonConverter<ContentDisposition>
 {
     public override void Write(VerifyJsonWriter writer, ContentDisposition disposition)

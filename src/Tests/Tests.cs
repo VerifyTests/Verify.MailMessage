@@ -72,10 +72,7 @@ public class Tests
     public Task MailAttachment()
     {
         var attachment = new Attachment(
-            new MemoryStream(new byte[]
-            {
-                1
-            }),
+            new MemoryStream("file content"u8.ToArray()),
             new ContentType("text/html; charset=utf-8"))
         {
             Name = "name.txt"
@@ -89,16 +86,43 @@ public class Tests
     public Task MailAttachmentFull()
     {
         var attachment = new Attachment(
-            new MemoryStream(new byte[]
-            {
-                1
-            }),
+            new MemoryStream("file content"u8.ToArray()),
             new ContentType("text/html; charset=utf-8"))
         {
             Name = "name.txt",
             TransferEncoding = TransferEncoding.EightBit,
         };
         return Verify(attachment);
+    }
+
+    #region AlternateView
+
+    [Fact]
+    public Task AlternateView()
+    {
+        var view = new AlternateView(
+            new MemoryStream("file content"u8.ToArray()),
+            new ContentType("text/html; charset=utf-8"))
+        {
+            ContentId = "the content id"
+        };
+        return Verify(view);
+    }
+
+    #endregion
+
+    [Fact]
+    public Task AlternateViewFull()
+    {
+        var view = new AlternateView(
+            new MemoryStream("file content"u8.ToArray()),
+            new ContentType("text/html; charset=utf-8"))
+        {
+            ContentId = "the content id",
+            BaseUri = new("http://url"),
+            TransferEncoding = TransferEncoding.EightBit,
+        };
+        return Verify(view);
     }
 
     #region MailMessage
@@ -156,10 +180,8 @@ public class Tests
             DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure | DeliveryNotificationOptions.Delay,
             Attachments =
             {
-                new Attachment(new MemoryStream(new byte[]
-                    {
-                        1
-                    }),
+                new Attachment(
+                    new MemoryStream("file content"u8.ToArray()),
                     new ContentType("text/html; charset=utf-8"))
                 {
                     Name = "name.txt"

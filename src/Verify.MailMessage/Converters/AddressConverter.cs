@@ -1,6 +1,4 @@
-﻿using System.Net.Mail;
-
-class MailAddressConverter :
+﻿class AddressConverter :
     WriteOnlyJsonConverter<MailAddress>
 {
     public override void Write(VerifyJsonWriter writer, MailAddress address)
