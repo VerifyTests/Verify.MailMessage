@@ -108,7 +108,8 @@ public class Tests
     {
         var mail = new MailMessage(
             from: "from@mail.com",
-            to: "to@mail.com", subject: "The subject",
+            to: "to@mail.com",
+            subject: "The subject",
             body: "The body");
         return Verify(mail);
     }

@@ -141,12 +141,13 @@ public Task MailMessage()
 {
     var mail = new MailMessage(
         from: "from@mail.com",
-        to: "to@mail.com", subject: "The subject",
+        to: "to@mail.com",
+        subject: "The subject",
         body: "The body");
     return Verify(mail);
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L104-L116' title='Snippet source file'>snippet source</a> | <a href='#snippet-mailmessage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L104-L117' title='Snippet source file'>snippet source</a> | <a href='#snippet-mailmessage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Results in: 

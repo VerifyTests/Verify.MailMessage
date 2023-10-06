@@ -16,6 +16,7 @@ class MailAttachmentConverter :
         {
             writer.WriteMember(attachment, attachment.TransferEncoding, "TransferEncoding");
         }
+
         writer.WriteEndObject();
     }
 }
