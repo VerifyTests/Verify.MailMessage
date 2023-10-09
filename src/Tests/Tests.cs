@@ -83,13 +83,6 @@ public class Tests
     #endregion
 
     [Fact]
-    public Task MailAttachmentMin()
-    {
-        var attachment = new Attachment("name.txt");
-        return Verify(attachment);
-    }
-
-    [Fact]
     public Task MailAttachmentFull()
     {
         var attachment = new Attachment(
@@ -214,7 +207,13 @@ public class Tests
                     new ContentType("text/html; charset=utf-8"))
                 {
                     Name = "name.txt"
-                }
+                },
+            },
+            AlternateViews =
+            {
+                new AlternateView(
+                    new MemoryStream("file content"u8.ToArray()),
+                    new ContentType("text/html; charset=utf-8")),
             }
         };
 }

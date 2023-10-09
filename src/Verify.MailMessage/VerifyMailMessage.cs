@@ -46,6 +46,18 @@ public static class VerifyMailMessage
             targets.Add(AttachmentToTarget(extension, attachment, name));
         }
 
+        for (var index = 0; index < message.AlternateViews.Count; index++)
+        {
+            var view = message.AlternateViews[index];
+            if (!ContentTypes.TryGetExtension(view.ContentType.MediaType, out var extension))
+            {
+                continue;
+            }
+
+            var name = $"AlternateView{index + 1}";
+            targets.Add(AttachmentToTarget(extension, view, name));
+        }
+
         return new(message, targets);
     }
 

@@ -32,6 +32,16 @@
         },
         Content: file content
       }
+    ],
+    AlternateViews: [
+      {
+        ContentType: {
+          MediaType: text/html,
+          CharSet: utf-8
+        },
+        ContentId: Guid_2,
+        Content: file content
+      }
     ]
   }
 }
