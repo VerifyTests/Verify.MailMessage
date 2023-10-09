@@ -149,7 +149,7 @@ public Task MailMessage()
     return Verify(mail);
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L128-L141' title='Snippet source file'>snippet source</a> | <a href='#snippet-mailmessage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L142-L155' title='Snippet source file'>snippet source</a> | <a href='#snippet-mailmessage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Results in: 

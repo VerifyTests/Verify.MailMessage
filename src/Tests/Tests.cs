@@ -83,6 +83,13 @@ public class Tests
     #endregion
 
     [Fact]
+    public Task MailAttachmentMin()
+    {
+        var attachment = new Attachment("name.txt");
+        return Verify(attachment);
+    }
+
+    [Fact]
     public Task MailAttachmentFull()
     {
         var attachment = new Attachment(
@@ -110,6 +117,13 @@ public class Tests
     }
 
     #endregion
+
+    [Fact]
+    public Task AlternateViewMin()
+    {
+        var view = new AlternateView(new MemoryStream("file content"u8.ToArray()));
+        return Verify(view);
+    }
 
     [Fact]
     public Task AlternateViewFull()
