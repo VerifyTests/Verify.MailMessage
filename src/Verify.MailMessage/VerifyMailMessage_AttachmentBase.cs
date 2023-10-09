@@ -4,13 +4,8 @@ public static partial class VerifyMailMessage
 {
     static bool TryGetTarget(AttachmentBase attachment, string name, [NotNullWhen(true)] out Target? target)
     {
-        if (!ContentTypes.TryGetExtension(attachment.ContentType.MediaType, out var extension))
-        {
-            target = null;
-            return false;
-        }
-
-        if (extension == "bin")
+        if (!ContentTypes.TryGetExtension(attachment.ContentType.MediaType, out var extension) ||
+            extension == "bin")
         {
             target = null;
             return false;
