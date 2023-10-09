@@ -3,6 +3,5 @@
     MediaType: text/html,
     CharSet: utf-8
   },
-  ContentId: the content id,
-  Content: file content
+  ContentId: the content id
 }

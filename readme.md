@@ -124,11 +124,10 @@ Results in:
   ContentId: Guid_1,
   ContentDisposition: {
     DispositionType: attachment
-  },
-  Content: file content
+  }
 }
 ```
-<sup><a href='/src/Tests/Tests.Attachment.verified.txt#L1-L13' title='Snippet source file'>snippet source</a> | <a href='#snippet-Tests.Attachment.verified.txt' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.Attachment.verified.txt#L1-L12' title='Snippet source file'>snippet source</a> | <a href='#snippet-Tests.Attachment.verified.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 

@@ -21,4 +21,7 @@ public static partial class VerifyMailMessage
             }
         }
     }
+
+    static ConversionResult ConvertView(AlternateView view, IReadOnlyDictionary<string, object> context) =>
+        new(view, GetTargets(view, "View").ToList());
 }
