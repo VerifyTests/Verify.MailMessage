@@ -213,6 +213,58 @@ public class Tests
     }
 
     [Fact]
+    public Task MailMessageMultipleAttachments()
+    {
+        var mail = new MailMessage(
+            from: new("from@mail.com"),
+            to: new MailAddress("sender@mail.com"))
+        {
+            Subject = "The subject",
+            Attachments =
+            {
+                new(
+                    new MemoryStream("attachment1 content"u8.ToArray()),
+                    new ContentType("text/html; charset=utf-8")),
+                new(
+                    new MemoryStream("attachment2 content"u8.ToArray()),
+                    new ContentType("text/html; charset=utf-8")),
+            },
+            AlternateViews =
+            {
+                new(
+                    new MemoryStream("view1 content"u8.ToArray()),
+                    new ContentType("text/html; charset=utf-8"))
+                {
+                    LinkedResources =
+                    {
+                        new(
+                            new MemoryStream("resource1 content"u8.ToArray()),
+                            new ContentType("text/html; charset=utf-8")),
+                        new(
+                            new MemoryStream("resource2 content"u8.ToArray()),
+                            new ContentType("text/html; charset=utf-8")),
+                    }
+                },
+                new(
+                    new MemoryStream("view2 content"u8.ToArray()),
+                    new ContentType("text/html; charset=utf-8"))
+                {
+                    LinkedResources =
+                    {
+                        new(
+                            new MemoryStream("resource1 content"u8.ToArray()),
+                            new ContentType("text/html; charset=utf-8")),
+                        new(
+                            new MemoryStream("resource2 content"u8.ToArray()),
+                            new ContentType("text/html; charset=utf-8")),
+                    }
+                },
+            }
+        };
+        return Verify(mail);
+    }
+
+    [Fact]
     public Task MailMessageFullNested()
     {
         var mail = BuildMail();

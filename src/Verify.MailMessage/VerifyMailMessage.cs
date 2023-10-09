@@ -1,8 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿namespace VerifyTests;
 
-namespace VerifyTests;
-
-public static class VerifyMailMessage
+public static partial class VerifyMailMessage
 {
     public static bool Initialized { get; private set; }
 
@@ -37,60 +35,18 @@ public static class VerifyMailMessage
         for (var index = 0; index < message.Attachments.Count; index++)
         {
             var attachment = message.Attachments[index];
-            if (!attachment.TryGetExtension(out var extension))
+            if (TryGetTarget(attachment, $"Attachment{index + 1}", out var target))
             {
-                continue;
+                targets.Add(target.Value);
             }
-
-            var name = $"Attachment{index + 1}";
-            targets.Add(AttachmentToTarget(extension, attachment, name));
         }
 
         for (var index = 0; index < message.AlternateViews.Count; index++)
         {
             var view = message.AlternateViews[index];
-            if (!view.TryGetExtension(out var extension))
-            {
-                continue;
-            }
-
-            var viewName = $"AlternateView{index + 1}";
-            targets.Add(AttachmentToTarget(extension, view, viewName));
-
-            for (var resourceIndex = 0; resourceIndex < view.LinkedResources.Count; resourceIndex++)
-            {
-                var resource = view.LinkedResources[resourceIndex];
-                if (!view.TryGetExtension(out var resourceExtension))
-                {
-                    continue;
-                }
-
-                var resourcesName = $"{viewName}_LinkedResources{resourceIndex + 1}";
-                targets.Add(AttachmentToTarget(resourceExtension, resource, resourcesName));
-            }
+            targets.AddRange(GetTargets(view, $"AlternateView{index + 1}"));
         }
 
         return new(message, targets);
-    }
-
-    static bool TryGetExtension(this AttachmentBase view,[NotNullWhen(true)] out string? extension) =>
-        ContentTypes.TryGetExtension(view.ContentType.MediaType, out extension);
-
-    static Target AttachmentToTarget(string extension, AttachmentBase attachment, string name)
-    {
-        if (FileExtensions.IsText(extension))
-        {
-            var reader = new StreamReader(attachment.ContentStream);
-            return new(extension, reader.ReadToEnd(), name);
-        }
-
-        return new(extension, attachment.ContentStream, name);
-    }
-
-    internal static bool IsAttachmentAtEnd(this AttachmentBase attachment)
-    {
-        var stream = attachment.ContentStream;
-        // An attachment already written to a file due to a type converter will have position at end.
-        return stream.Position != stream.Length;
     }
 }
