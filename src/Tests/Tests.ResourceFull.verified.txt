@@ -5,6 +5,5 @@
   },
   ContentId: the content id,
   ContentLink: http://uri/,
-  TransferEncoding: EightBit,
-  Content: resource content
+  TransferEncoding: EightBit
 }

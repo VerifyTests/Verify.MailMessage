@@ -14,10 +14,9 @@ public static partial class VerifyMailMessage
         for (var resourceIndex = 0; resourceIndex < view.LinkedResources.Count; resourceIndex++)
         {
             var resource = view.LinkedResources[resourceIndex];
-            var resourcesName = $"{viewName}_LinkedResources{resourceIndex + 1}";
-            if (resource.TryGetExtension(out var resourceExtension))
+            if (TryGetTarget(resource, $"{viewName}_LinkedResources{resourceIndex + 1}",out var target))
             {
-                yield return AttachmentToTarget(resourceExtension, resource, resourcesName);
+                yield return target.Value;
             }
         }
     }

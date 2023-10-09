@@ -29,5 +29,6 @@ public static partial class VerifyMailMessage
         VerifierSettings.RegisterFileConverter<MailMessage>(ConvertMail);
         VerifierSettings.RegisterFileConverter<Attachment>(ConvertAttachment);
         VerifierSettings.RegisterFileConverter<AlternateView>(ConvertView);
+        VerifierSettings.RegisterFileConverter<LinkedResource>(ConvertResource);
     }
 }
