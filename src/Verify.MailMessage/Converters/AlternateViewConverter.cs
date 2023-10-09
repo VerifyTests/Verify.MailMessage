@@ -27,6 +27,7 @@
             }
         }
 
+        writer.WriteMember(view, view.LinkedResources, "LinkedResources");
         writer.WriteEndObject();
     }
 }

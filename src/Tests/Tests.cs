@@ -85,15 +85,18 @@ public class Tests
     [Fact]
     public Task MailAttachmentFull()
     {
-        var attachment = new Attachment(
+        var attachment = BuildAttachment();
+        return Verify(attachment);
+    }
+
+    static Attachment BuildAttachment() =>
+        new(
             new MemoryStream("file content"u8.ToArray()),
             new ContentType("text/html; charset=utf-8"))
         {
             Name = "name.txt",
             TransferEncoding = TransferEncoding.EightBit,
         };
-        return Verify(attachment);
-    }
 
     #region AlternateView
 
@@ -121,16 +124,28 @@ public class Tests
     [Fact]
     public Task AlternateViewFull()
     {
-        var view = new AlternateView(
+        var view = BuildView();
+        return Verify(view);
+    }
+
+    static AlternateView BuildView() =>
+        new(
             new MemoryStream("file content"u8.ToArray()),
             new ContentType("text/html; charset=utf-8"))
         {
             ContentId = "the content id",
             BaseUri = new("http://url"),
             TransferEncoding = TransferEncoding.EightBit,
+            LinkedResources =
+            {
+                BuildResource()
+            }
         };
-        return Verify(view);
-    }
+
+    static LinkedResource BuildResource() =>
+        new(
+            new MemoryStream("resource content"u8.ToArray()),
+            new ContentType("text/html; charset=utf-8"));
 
     #region MailMessage
 
@@ -202,18 +217,11 @@ public class Tests
             DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure | DeliveryNotificationOptions.Delay,
             Attachments =
             {
-                new Attachment(
-                    new MemoryStream("file content"u8.ToArray()),
-                    new ContentType("text/html; charset=utf-8"))
-                {
-                    Name = "name.txt"
-                },
+                BuildAttachment(),
             },
             AlternateViews =
             {
-                new AlternateView(
-                    new MemoryStream("file content"u8.ToArray()),
-                    new ContentType("text/html; charset=utf-8")),
+                BuildView(),
             }
         };
 }

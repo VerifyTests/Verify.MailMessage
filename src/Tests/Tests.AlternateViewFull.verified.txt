@@ -6,5 +6,15 @@
   },
   ContentId: the content id,
   TransferEncoding: EightBit,
-  Content: file content
+  Content: file content,
+  LinkedResources: [
+    {
+      ContentType: {
+        MediaType: text/html,
+        CharSet: utf-8
+      },
+      ContentId: Guid_1,
+      Content: resource content
+    }
+  ]
 }

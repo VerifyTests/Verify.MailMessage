@@ -26,6 +26,7 @@
         CharSet: utf-8
       },
       ContentId: Guid_1,
+      TransferEncoding: EightBit,
       ContentDisposition: {
         DispositionType: attachment
       }
@@ -33,11 +34,22 @@
   ],
   AlternateViews: [
     {
+      BaseUri: http://url/,
       ContentType: {
         MediaType: text/html,
         CharSet: utf-8
       },
-      ContentId: Guid_2
+      ContentId: the content id,
+      TransferEncoding: EightBit,
+      LinkedResources: [
+        {
+          ContentType: {
+            MediaType: text/html,
+            CharSet: utf-8
+          },
+          ContentId: Guid_2
+        }
+      ]
     }
   ]
 }

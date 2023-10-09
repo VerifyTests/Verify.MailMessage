@@ -13,7 +13,7 @@ public static class VerifyMailMessage
         new AlternateViewConverter(),
         new AddressConverter(),
         new AttachmentConverter(),
-        new AlternateViewConverter(),
+        new LinkedResourceConverter(),
         new MessageConverter(),
         ];
 
@@ -37,29 +37,44 @@ public static class VerifyMailMessage
         for (var index = 0; index < message.Attachments.Count; index++)
         {
             var attachment = message.Attachments[index];
-            if (!TryGetExtension(attachment, out var extension))
+            if (!attachment.TryGetExtension(out var extension))
             {
                 continue;
             }
 
-            var name = attachment.Name ?? $"Attachment{index + 1}";
+            var name = $"Attachment{index + 1}";
             targets.Add(AttachmentToTarget(extension, attachment, name));
         }
 
         for (var index = 0; index < message.AlternateViews.Count; index++)
         {
             var view = message.AlternateViews[index];
-            if (!ContentTypes.TryGetExtension(view.ContentType.MediaType, out var extension))
+            if (!view.TryGetExtension(out var extension))
             {
                 continue;
             }
 
-            var name = $"AlternateView{index + 1}";
-            targets.Add(AttachmentToTarget(extension, view, name));
+            var viewName = $"AlternateView{index + 1}";
+            targets.Add(AttachmentToTarget(extension, view, viewName));
+
+            for (var resourceIndex = 0; resourceIndex < view.LinkedResources.Count; resourceIndex++)
+            {
+                var resource = view.LinkedResources[resourceIndex];
+                if (!view.TryGetExtension(out var resourceExtension))
+                {
+                    continue;
+                }
+
+                var resourcesName = $"{viewName}_LinkedResources{resourceIndex + 1}";
+                targets.Add(AttachmentToTarget(resourceExtension, resource, resourcesName));
+            }
         }
 
         return new(message, targets);
     }
+
+    static bool TryGetExtension(this AttachmentBase view,[NotNullWhen(true)] out string? extension) =>
+        ContentTypes.TryGetExtension(view.ContentType.MediaType, out extension);
 
     static Target AttachmentToTarget(string extension, AttachmentBase attachment, string name)
     {
@@ -70,21 +85,6 @@ public static class VerifyMailMessage
         }
 
         return new(extension, attachment.ContentStream, name);
-    }
-
-    static bool TryGetExtension(Attachment attachment, [NotNullWhen(true)] out string? extension)
-    {
-        if (attachment.Name != null)
-        {
-            extension = Path.GetExtension(attachment.Name);
-            if (!string.IsNullOrWhiteSpace(extension) &&
-                extension.Length == 3)
-            {
-                return true;
-            }
-        }
-
-        return ContentTypes.TryGetExtension(attachment.ContentType.MediaType, out extension);
     }
 
     internal static bool IsAttachmentAtEnd(this AttachmentBase attachment)
