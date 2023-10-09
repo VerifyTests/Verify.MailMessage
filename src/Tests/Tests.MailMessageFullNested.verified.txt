@@ -50,7 +50,9 @@
               MediaType: text/html,
               CharSet: utf-8
             },
-            ContentId: Guid_2,
+            ContentId: the content id,
+            ContentLink: http://uri/,
+            TransferEncoding: EightBit,
             Content: resource content
           }
         ]

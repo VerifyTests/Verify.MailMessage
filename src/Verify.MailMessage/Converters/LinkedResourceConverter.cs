@@ -7,6 +7,7 @@ class LinkedResourceConverter :
 
         writer.WriteMember(resource, resource.ContentType, "ContentType");
         writer.WriteMember(resource, resource.ContentId, "ContentId");
+        writer.WriteMember(resource, resource.ContentLink, "ContentLink");
 
         if (resource.TransferEncoding != TransferEncoding.Base64)
         {

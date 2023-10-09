@@ -19,7 +19,12 @@ public class Tests
     [Fact]
     public Task ContentDispositionFull()
     {
-        var content = new ContentDisposition("inline; filename=\"filename.jpg\"")
+        var content = BuildContentDisposition();
+        return Verify(content);
+    }
+
+    static ContentDisposition BuildContentDisposition() =>
+        new("inline; filename=\"filename.txt\"")
         {
             CreationDate = DateTime.Now,
             ModificationDate = DateTime.Now,
@@ -32,8 +37,6 @@ public class Tests
                 }
             }
         };
-        return Verify(content);
-    }
 
     #region ContentType
 
@@ -66,10 +69,10 @@ public class Tests
         return Verify(content);
     }
 
-    #region MailAttachment
+    #region Attachment
 
     [Fact]
-    public Task MailAttachment()
+    public Task Attachment()
     {
         var attachment = new Attachment(
             new MemoryStream("file content"u8.ToArray()),
@@ -83,7 +86,14 @@ public class Tests
     #endregion
 
     [Fact]
-    public Task MailAttachmentFull()
+    public Task AttachmentFull()
+    {
+        var attachment = BuildAttachment();
+        return Verify(attachment);
+    }
+
+    [Fact]
+    public Task AttachmentNested()
     {
         var attachment = BuildAttachment();
         return Verify(attachment);
@@ -128,6 +138,13 @@ public class Tests
         return Verify(view);
     }
 
+    [Fact]
+    public Task AlternateViewNested()
+    {
+        var view = BuildView();
+        return Verify(new{view});
+    }
+
     static AlternateView BuildView() =>
         new(
             new MemoryStream("file content"u8.ToArray()),
@@ -142,10 +159,36 @@ public class Tests
             }
         };
 
+    [Fact]
+    public Task ResourceMin()
+    {
+        var view = new LinkedResource(new MemoryStream("file content"u8.ToArray()));
+        return Verify(view);
+    }
+
+    [Fact]
+    public Task ResourceFull()
+    {
+        var resource = BuildResource();
+        return Verify(resource);
+    }
+
+    [Fact]
+    public Task ResourceNested()
+    {
+        var resource = BuildResource();
+        return Verify(new{resource});
+    }
+
     static LinkedResource BuildResource() =>
         new(
             new MemoryStream("resource content"u8.ToArray()),
-            new ContentType("text/html; charset=utf-8"));
+            new ContentType("text/html; charset=utf-8"))
+        {
+            ContentId = "the content id",
+            ContentLink = new("http://uri"),
+            TransferEncoding = TransferEncoding.EightBit,
+        };
 
     #region MailMessage
 

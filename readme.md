@@ -71,7 +71,7 @@ public Task ContentType()
     return Verify(content);
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L38-L50' title='Snippet source file'>snippet source</a> | <a href='#snippet-contenttype' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L41-L53' title='Snippet source file'>snippet source</a> | <a href='#snippet-contenttype' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Results in: 
@@ -91,11 +91,11 @@ Results in:
 
 ### Attachment
 
-<!-- snippet: MailAttachment -->
-<a id='snippet-mailattachment'></a>
+<!-- snippet: Attachment -->
+<a id='snippet-attachment'></a>
 ```cs
 [Fact]
-public Task MailAttachment()
+public Task Attachment()
 {
     var attachment = new Attachment(
         new MemoryStream("file content"u8.ToArray()),
@@ -106,13 +106,13 @@ public Task MailAttachment()
     return Verify(attachment);
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L69-L83' title='Snippet source file'>snippet source</a> | <a href='#snippet-mailattachment' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L72-L86' title='Snippet source file'>snippet source</a> | <a href='#snippet-attachment' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Results in: 
 
-<!-- snippet: Tests.MailAttachment.verified.txt -->
-<a id='snippet-Tests.MailAttachment.verified.txt'></a>
+<!-- snippet: Tests.Attachment.verified.txt -->
+<a id='snippet-Tests.Attachment.verified.txt'></a>
 ```txt
 {
   Name: name.txt,
@@ -128,7 +128,7 @@ Results in:
   Content: file content
 }
 ```
-<sup><a href='/src/Tests/Tests.MailAttachment.verified.txt#L1-L13' title='Snippet source file'>snippet source</a> | <a href='#snippet-Tests.MailAttachment.verified.txt' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.Attachment.verified.txt#L1-L13' title='Snippet source file'>snippet source</a> | <a href='#snippet-Tests.Attachment.verified.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
@@ -149,7 +149,7 @@ public Task MailMessage()
     return Verify(mail);
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L150-L163' title='Snippet source file'>snippet source</a> | <a href='#snippet-mailmessage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L193-L206' title='Snippet source file'>snippet source</a> | <a href='#snippet-mailmessage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Results in: 

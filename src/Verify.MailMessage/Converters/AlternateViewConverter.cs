@@ -14,7 +14,6 @@
             writer.WriteMember(view, view.TransferEncoding, "TransferEncoding");
         }
 
-        //TODO: linked resources
         if (view.IsAttachmentAtEnd())
         {
             if (view.TryGetContent(out var content))
