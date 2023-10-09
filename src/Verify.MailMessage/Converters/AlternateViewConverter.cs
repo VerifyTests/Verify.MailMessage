@@ -1,28 +1,30 @@
 ﻿class AlternateViewConverter :
     WriteOnlyJsonConverter<AlternateView>
 {
-    public override void Write(VerifyJsonWriter writer, AlternateView attachment)
+    public override void Write(VerifyJsonWriter writer, AlternateView view)
     {
         writer.WriteStartObject();
 
-        writer.WriteMember(attachment, attachment.BaseUri, "BaseUri");
-        writer.WriteMember(attachment, attachment.ContentType, "ContentType");
-        writer.WriteMember(attachment, attachment.ContentId, "ContentId");
+        writer.WriteMember(view, view.BaseUri, "BaseUri");
+        writer.WriteMember(view, view.ContentType, "ContentType");
+        writer.WriteMember(view, view.ContentId, "ContentId");
 
-        if (attachment.TransferEncoding != TransferEncoding.Base64)
+        if (view.TransferEncoding != TransferEncoding.Base64)
         {
-            writer.WriteMember(attachment, attachment.TransferEncoding, "TransferEncoding");
+            writer.WriteMember(view, view.TransferEncoding, "TransferEncoding");
         }
 
         //TODO: linked resources
-
-        if (attachment.TryGetContent(out var content))
+        if (view.IsAttachmentAtEnd())
         {
-            writer.WriteMember(attachment, content, "Content");
-        }
-        else
-        {
-            writer.WriteMember(attachment, "binary", "Content");
+            if (view.TryGetContent(out var content))
+            {
+                writer.WriteMember(view, content, "Content");
+            }
+            else
+            {
+                writer.WriteMember(view, "binary", "Content");
+            }
         }
 
         writer.WriteEndObject();

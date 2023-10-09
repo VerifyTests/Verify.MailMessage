@@ -46,7 +46,6 @@ public static class VerifyMailMessage
             targets.Add(AttachmentToTarget(extension, attachment, name));
         }
 
-
         return new(message, targets);
     }
 
@@ -66,12 +65,20 @@ public static class VerifyMailMessage
         if (attachment.Name != null)
         {
             extension = Path.GetExtension(attachment.Name);
-            if (!string.IsNullOrWhiteSpace(extension) && extension.Length == 3)
+            if (!string.IsNullOrWhiteSpace(extension) &&
+                extension.Length == 3)
             {
                 return true;
             }
         }
 
         return ContentTypes.TryGetExtension(attachment.ContentType.MediaType, out extension);
+    }
+
+    internal static bool IsAttachmentAtEnd(this AttachmentBase attachment)
+    {
+        var stream = attachment.ContentStream;
+        // An attachment already written to a file due to a type converter will have position at end.
+        return stream.Position != stream.Length;
     }
 }

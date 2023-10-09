@@ -17,9 +17,7 @@
 
         writer.WriteMember(attachment, attachment.ContentDisposition, "ContentDisposition");
 
-        var stream = attachment.ContentStream;
-        // An attachment already written to a file due to a type converter will have position at end.
-        if (stream.Position != stream.Length)
+        if (attachment.IsAttachmentAtEnd())
         {
             if (attachment.TryGetContent(out var content))
             {
