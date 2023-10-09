@@ -2,18 +2,31 @@
 
 public static partial class VerifyMailMessage
 {
-    static bool TryGetExtension(this AttachmentBase view,[NotNullWhen(true)] out string? extension) =>
-        ContentTypes.TryGetExtension(view.ContentType.MediaType, out extension);
-
-    static Target AttachmentToTarget(string extension, AttachmentBase attachment, string name)
+    static bool TryGetTarget(AttachmentBase attachment, string name, [NotNullWhen(true)] out Target? target)
     {
+        if (!ContentTypes.TryGetExtension(attachment.ContentType.MediaType, out var extension))
+        {
+            target = null;
+            return false;
+        }
+
+        if (extension == "bin")
+        {
+            target = null;
+            return false;
+        }
+
         if (FileExtensions.IsText(extension))
         {
             var reader = new StreamReader(attachment.ContentStream);
-            return new(extension, reader.ReadToEnd(), name);
+            target = new Target(extension, reader.ReadToEnd(), name);
+        }
+        else
+        {
+            target = new Target(extension, attachment.ContentStream, name);
         }
 
-        return new(extension, attachment.ContentStream, name);
+        return true;
     }
 
     internal static bool IsAttachmentAtEnd(this AttachmentBase attachment)

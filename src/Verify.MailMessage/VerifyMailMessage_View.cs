@@ -4,12 +4,10 @@ public static partial class VerifyMailMessage
 {
     static IEnumerable<Target> GetTargets(AlternateView view, string viewName)
     {
-        if (!view.TryGetExtension(out var extension))
+        if (TryGetTarget(view,viewName, out var viewTarget))
         {
-            yield break;
+            yield return viewTarget.Value;
         }
-
-        yield return AttachmentToTarget(extension, view, viewName);
 
         for (var resourceIndex = 0; resourceIndex < view.LinkedResources.Count; resourceIndex++)
         {

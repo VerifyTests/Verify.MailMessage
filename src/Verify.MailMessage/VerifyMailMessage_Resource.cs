@@ -2,18 +2,6 @@
 
 public static partial class VerifyMailMessage
 {
-    static bool TryGetTarget(LinkedResource resource, string name, [NotNullWhen(true)] out Target? target)
-    {
-        if (!resource.TryGetExtension(out var extension))
-        {
-            target = null;
-            return false;
-        }
-
-        target = AttachmentToTarget(extension, resource, name);
-        return true;
-    }
-
     static ConversionResult ConvertResource(LinkedResource resource, IReadOnlyDictionary<string, object> context)
     {
         var targets = new List<Target>();
