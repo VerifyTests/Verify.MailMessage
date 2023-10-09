@@ -28,8 +28,7 @@
       ContentId: Guid_1,
       ContentDisposition: {
         DispositionType: attachment
-      },
-      Content: file content
+      }
     }
   ]
 }

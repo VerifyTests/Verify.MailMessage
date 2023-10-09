@@ -17,13 +17,18 @@
 
         writer.WriteMember(attachment, attachment.ContentDisposition, "ContentDisposition");
 
-        if (attachment.TryGetContent(out var content))
+        var stream = attachment.ContentStream;
+        // An attachment already written to a file due to a type converter will have position at end.
+        if (stream.Position != stream.Length)
         {
-            writer.WriteMember(attachment, content, "Content");
-        }
-        else
-        {
-            writer.WriteMember(attachment, "binary", "Content");
+            if (attachment.TryGetContent(out var content))
+            {
+                writer.WriteMember(attachment, content, "Content");
+            }
+            else
+            {
+                writer.WriteMember(attachment, "binary", "Content");
+            }
         }
 
         writer.WriteEndObject();

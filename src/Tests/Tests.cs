@@ -143,7 +143,22 @@ public class Tests
     [Fact]
     public Task MailMessageFull()
     {
-        var mail = new MailMessage(
+        var mail = BuildMail();
+        return Verify(mail);
+    }
+
+    [Fact]
+    public Task MailMessageFullNested()
+    {
+        var mail = BuildMail();
+        return Verify(new
+        {
+            mail
+        });
+    }
+
+    static MailMessage BuildMail() =>
+        new(
             from: new("from@mail.com", "the from"),
             to: new MailAddress("sender@mail.com", "the to"))
         {
@@ -188,6 +203,4 @@ public class Tests
                 }
             }
         };
-        return Verify(mail);
-    }
 }

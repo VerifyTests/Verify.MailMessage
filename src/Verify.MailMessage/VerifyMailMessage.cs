@@ -1,4 +1,6 @@
-﻿namespace VerifyTests;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace VerifyTests;
 
 public static class VerifyMailMessage
 {
@@ -32,14 +34,44 @@ public static class VerifyMailMessage
     static ConversionResult ConvertMail(MailMessage message, IReadOnlyDictionary<string, object> context)
     {
         var targets = new List<Target>();
-        foreach (var attachment in message.Attachments)
+        for (var index = 0; index < message.Attachments.Count; index++)
         {
-            if (ContentTypes.TryGetExtension(attachment.ContentType.ToString(), out var extension))
+            var attachment = message.Attachments[index];
+            if (!TryGetExtension(attachment, out var extension))
             {
-                targets.Add(new(extension, attachment.ContentStream, attachment.Name));
+                continue;
+            }
+
+            var name = attachment.Name ?? $"Attachment{index + 1}";
+            targets.Add(AttachmentToTarget(extension, attachment, name));
+        }
+
+
+        return new(message, targets);
+    }
+
+    static Target AttachmentToTarget(string extension, AttachmentBase attachment, string name)
+    {
+        if (FileExtensions.IsText(extension))
+        {
+            var reader = new StreamReader(attachment.ContentStream);
+            return new(extension, reader.ReadToEnd(), name);
+        }
+
+        return new(extension, attachment.ContentStream, name);
+    }
+
+    static bool TryGetExtension(Attachment attachment, [NotNullWhen(true)] out string? extension)
+    {
+        if (attachment.Name != null)
+        {
+            extension = Path.GetExtension(attachment.Name);
+            if (!string.IsNullOrWhiteSpace(extension) && extension.Length == 3)
+            {
+                return true;
             }
         }
 
-        return new(message, targets);
+        return ContentTypes.TryGetExtension(attachment.ContentType.MediaType, out extension);
     }
 }
