@@ -1,0 +1,62 @@
+﻿{
+  mail: {
+    From: the from <from@mail.com>,
+    Sender: the sender <sender@mail.com>,
+    To: the to <sender@mail.com>,
+    Cc: the ccc <cc@mail.com>,
+    Bcc: the bcc <bcc@mail.com>,
+    ReplyTo: the reply <reply@mail.com>,
+    Priority: High,
+    Subject: The subject,
+    SubjectEncoding: utf-32,
+    Headers: {
+      key: value
+    },
+    HeadersEncoding: us-ascii,
+    DeliveryNotificationOptions: OnFailure, Delay,
+    BodyEncoding: utf-16BE,
+    BodyTransferEncoding: EightBit,
+    IsBodyHtml: true,
+    Body: The body,
+    Attachments: [
+      {
+        Name: name.txt,
+        ContentType: {
+          MediaType: text/html,
+          Name: name.txt,
+          CharSet: utf-8
+        },
+        ContentId: Guid_1,
+        TransferEncoding: EightBit,
+        ContentDisposition: {
+          DispositionType: attachment
+        },
+        Content: file content
+      }
+    ],
+    AlternateViews: [
+      {
+        BaseUri: http://url/,
+        ContentType: {
+          MediaType: text/html,
+          CharSet: utf-8
+        },
+        ContentId: the content id,
+        TransferEncoding: EightBit,
+        Content: file content,
+        LinkedResources: [
+          {
+            ContentType: {
+              MediaType: text/html,
+              CharSet: utf-8
+            },
+            ContentId: the content id,
+            ContentLink: http://uri/,
+            TransferEncoding: EightBit,
+            Content: resource content
+          }
+        ]
+      }
+    ]
+  }
+}

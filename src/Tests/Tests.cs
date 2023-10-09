@@ -19,7 +19,12 @@ public class Tests
     [Fact]
     public Task ContentDispositionFull()
     {
-        var content = new ContentDisposition("inline; filename=\"filename.jpg\"")
+        var content = BuildContentDisposition();
+        return Verify(content);
+    }
+
+    static ContentDisposition BuildContentDisposition() =>
+        new("inline; filename=\"filename.txt\"")
         {
             CreationDate = DateTime.Now,
             ModificationDate = DateTime.Now,
@@ -32,8 +37,6 @@ public class Tests
                 }
             }
         };
-        return Verify(content);
-    }
 
     #region ContentType
 
@@ -66,10 +69,10 @@ public class Tests
         return Verify(content);
     }
 
-    #region MailAttachment
+    #region Attachment
 
     [Fact]
-    public Task MailAttachment()
+    public Task Attachment()
     {
         var attachment = new Attachment(
             new MemoryStream("file content"u8.ToArray()),
@@ -83,17 +86,27 @@ public class Tests
     #endregion
 
     [Fact]
-    public Task MailAttachmentFull()
+    public Task AttachmentFull()
     {
-        var attachment = new Attachment(
+        var attachment = BuildAttachment();
+        return Verify(attachment);
+    }
+
+    [Fact]
+    public Task AttachmentNested()
+    {
+        var attachment = BuildAttachment();
+        return Verify(attachment);
+    }
+
+    static Attachment BuildAttachment() =>
+        new(
             new MemoryStream("file content"u8.ToArray()),
             new ContentType("text/html; charset=utf-8"))
         {
             Name = "name.txt",
             TransferEncoding = TransferEncoding.EightBit,
         };
-        return Verify(attachment);
-    }
 
     #region AlternateView
 
@@ -112,18 +125,70 @@ public class Tests
     #endregion
 
     [Fact]
+    public Task AlternateViewMin()
+    {
+        var view = new AlternateView(new MemoryStream("file content"u8.ToArray()));
+        return Verify(view);
+    }
+
+    [Fact]
     public Task AlternateViewFull()
     {
-        var view = new AlternateView(
+        var view = BuildView();
+        return Verify(view);
+    }
+
+    [Fact]
+    public Task AlternateViewNested()
+    {
+        var view = BuildView();
+        return Verify(new{view});
+    }
+
+    static AlternateView BuildView() =>
+        new(
             new MemoryStream("file content"u8.ToArray()),
             new ContentType("text/html; charset=utf-8"))
         {
             ContentId = "the content id",
             BaseUri = new("http://url"),
             TransferEncoding = TransferEncoding.EightBit,
+            LinkedResources =
+            {
+                BuildResource()
+            }
         };
+
+    [Fact]
+    public Task ResourceMin()
+    {
+        var view = new LinkedResource(new MemoryStream("file content"u8.ToArray()));
         return Verify(view);
     }
+
+    [Fact]
+    public Task ResourceFull()
+    {
+        var resource = BuildResource();
+        return Verify(resource);
+    }
+
+    [Fact]
+    public Task ResourceNested()
+    {
+        var resource = BuildResource();
+        return Verify(new{resource});
+    }
+
+    static LinkedResource BuildResource() =>
+        new(
+            new MemoryStream("resource content"u8.ToArray()),
+            new ContentType("text/html; charset=utf-8"))
+        {
+            ContentId = "the content id",
+            ContentLink = new("http://uri"),
+            TransferEncoding = TransferEncoding.EightBit,
+        };
 
     #region MailMessage
 
@@ -143,7 +208,74 @@ public class Tests
     [Fact]
     public Task MailMessageFull()
     {
+        var mail = BuildMail();
+        return Verify(mail);
+    }
+
+    [Fact]
+    public Task MailMessageMultipleAttachments()
+    {
         var mail = new MailMessage(
+            from: new("from@mail.com"),
+            to: new MailAddress("sender@mail.com"))
+        {
+            Subject = "The subject",
+            Attachments =
+            {
+                new(
+                    new MemoryStream("attachment1 content"u8.ToArray()),
+                    new ContentType("text/html; charset=utf-8")),
+                new(
+                    new MemoryStream("attachment2 content"u8.ToArray()),
+                    new ContentType("text/html; charset=utf-8")),
+            },
+            AlternateViews =
+            {
+                new(
+                    new MemoryStream("view1 content"u8.ToArray()),
+                    new ContentType("text/html; charset=utf-8"))
+                {
+                    LinkedResources =
+                    {
+                        new(
+                            new MemoryStream("resource1 content"u8.ToArray()),
+                            new ContentType("text/html; charset=utf-8")),
+                        new(
+                            new MemoryStream("resource2 content"u8.ToArray()),
+                            new ContentType("text/html; charset=utf-8")),
+                    }
+                },
+                new(
+                    new MemoryStream("view2 content"u8.ToArray()),
+                    new ContentType("text/html; charset=utf-8"))
+                {
+                    LinkedResources =
+                    {
+                        new(
+                            new MemoryStream("resource1 content"u8.ToArray()),
+                            new ContentType("text/html; charset=utf-8")),
+                        new(
+                            new MemoryStream("resource2 content"u8.ToArray()),
+                            new ContentType("text/html; charset=utf-8")),
+                    }
+                },
+            }
+        };
+        return Verify(mail);
+    }
+
+    [Fact]
+    public Task MailMessageFullNested()
+    {
+        var mail = BuildMail();
+        return Verify(new
+        {
+            mail
+        });
+    }
+
+    static MailMessage BuildMail() =>
+        new(
             from: new("from@mail.com", "the from"),
             to: new MailAddress("sender@mail.com", "the to"))
         {
@@ -180,14 +312,11 @@ public class Tests
             DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure | DeliveryNotificationOptions.Delay,
             Attachments =
             {
-                new Attachment(
-                    new MemoryStream("file content"u8.ToArray()),
-                    new ContentType("text/html; charset=utf-8"))
-                {
-                    Name = "name.txt"
-                }
+                BuildAttachment(),
+            },
+            AlternateViews =
+            {
+                BuildView(),
             }
         };
-        return Verify(mail);
-    }
 }

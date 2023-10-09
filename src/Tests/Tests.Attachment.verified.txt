@@ -1,0 +1,12 @@
+﻿{
+  Name: name.txt,
+  ContentType: {
+    MediaType: text/html,
+    Name: name.txt,
+    CharSet: utf-8
+  },
+  ContentId: Guid_1,
+  ContentDisposition: {
+    DispositionType: attachment
+  }
+}

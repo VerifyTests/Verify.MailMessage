@@ -9,6 +9,5 @@
   TransferEncoding: EightBit,
   ContentDisposition: {
     DispositionType: attachment
-  },
-  Content: file content
+  }
 }

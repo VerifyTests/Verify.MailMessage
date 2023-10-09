@@ -1,0 +1,77 @@
+﻿{
+  From: from@mail.com,
+  To: sender@mail.com,
+  Subject: The subject,
+  IsBodyHtml: false,
+  Body: ,
+  Attachments: [
+    {
+      ContentType: {
+        MediaType: text/html,
+        CharSet: utf-8
+      },
+      ContentId: Guid_1,
+      ContentDisposition: {
+        DispositionType: attachment
+      }
+    },
+    {
+      ContentType: {
+        MediaType: text/html,
+        CharSet: utf-8
+      },
+      ContentId: Guid_2,
+      ContentDisposition: {
+        DispositionType: attachment
+      }
+    }
+  ],
+  AlternateViews: [
+    {
+      ContentType: {
+        MediaType: text/html,
+        CharSet: utf-8
+      },
+      ContentId: Guid_3,
+      LinkedResources: [
+        {
+          ContentType: {
+            MediaType: text/html,
+            CharSet: utf-8
+          },
+          ContentId: Guid_4
+        },
+        {
+          ContentType: {
+            MediaType: text/html,
+            CharSet: utf-8
+          },
+          ContentId: Guid_5
+        }
+      ]
+    },
+    {
+      ContentType: {
+        MediaType: text/html,
+        CharSet: utf-8
+      },
+      ContentId: Guid_6,
+      LinkedResources: [
+        {
+          ContentType: {
+            MediaType: text/html,
+            CharSet: utf-8
+          },
+          ContentId: Guid_7
+        },
+        {
+          ContentType: {
+            MediaType: text/html,
+            CharSet: utf-8
+          },
+          ContentId: Guid_8
+        }
+      ]
+    }
+  ]
+}

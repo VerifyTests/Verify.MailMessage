@@ -1,6 +1,6 @@
 ﻿namespace VerifyTests;
 
-public static class VerifyMailMessage
+public static partial class VerifyMailMessage
 {
     public static bool Initialized { get; private set; }
 
@@ -8,9 +8,10 @@ public static class VerifyMailMessage
         [
         new ContentDispositionConverter(),
         new ContentTypeConverter(),
+        new AlternateViewConverter(),
         new AddressConverter(),
         new AttachmentConverter(),
-        new AlternateViewConverter(),
+        new LinkedResourceConverter(),
         new MessageConverter(),
         ];
 
@@ -25,5 +26,9 @@ public static class VerifyMailMessage
 
         InnerVerifier.ThrowIfVerifyHasBeenRun();
         VerifierSettings.AddExtraSettings(_ => _.Converters.AddRange(converters));
+        VerifierSettings.RegisterFileConverter<MailMessage>(ConvertMail);
+        VerifierSettings.RegisterFileConverter<Attachment>(ConvertAttachment);
+        VerifierSettings.RegisterFileConverter<AlternateView>(ConvertView);
+        VerifierSettings.RegisterFileConverter<LinkedResource>(ConvertResource);
     }
 }

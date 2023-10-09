@@ -1,0 +1,7 @@
+﻿{
+  ContentType: {
+    MediaType: application/octet-stream
+  },
+  ContentId: Guid_1,
+  Content: binary
+}

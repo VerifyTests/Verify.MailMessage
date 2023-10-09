@@ -1,5 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-
 static class Extensions
 {
     public static bool TryGetContent(this AttachmentBase attachment, [NotNullWhen(true)] out string? content)

@@ -17,13 +17,16 @@
 
         writer.WriteMember(attachment, attachment.ContentDisposition, "ContentDisposition");
 
-        if (attachment.TryGetContent(out var content))
+        if (attachment.IsAttachmentAtEnd())
         {
-            writer.WriteMember(attachment, content, "Content");
-        }
-        else
-        {
-            writer.WriteMember(attachment, "binary", "Content");
+            if (attachment.TryGetContent(out var content))
+            {
+                writer.WriteMember(attachment, content, "Content");
+            }
+            else
+            {
+                writer.WriteMember(attachment, "binary", "Content");
+            }
         }
 
         writer.WriteEndObject();
