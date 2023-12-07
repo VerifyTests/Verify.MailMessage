@@ -131,7 +131,6 @@ Results in:
 <!-- endSnippet -->
 
 
-
 ### MailMessage
 
 <!-- snippet: MailMessage -->
