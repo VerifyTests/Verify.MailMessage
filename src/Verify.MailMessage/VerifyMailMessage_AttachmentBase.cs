@@ -11,7 +11,7 @@ public static partial class VerifyMailMessage
             return false;
         }
 
-        if (FileExtensions.IsText(extension))
+        if (FileExtensions.IsTextExtension(extension))
         {
             var reader = new StreamReader(attachment.ContentStream);
             target = new Target(extension, reader.ReadToEnd(), name);
