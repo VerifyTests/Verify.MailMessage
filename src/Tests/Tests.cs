@@ -2,7 +2,6 @@
 using System.Net.Mail;
 using System.Net.Mime;
 
-[UsesVerify]
 public class Tests
 {
     #region ContentDisposition
