@@ -39,7 +39,7 @@ public Task ContentDisposition()
     return Verify(content);
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L8-L17' title='Snippet source file'>snippet source</a> | <a href='#snippet-contentdisposition' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L7-L16' title='Snippet source file'>snippet source</a> | <a href='#snippet-contentdisposition' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Results in: 
@@ -71,7 +71,7 @@ public Task ContentType()
     return Verify(content);
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L41-L53' title='Snippet source file'>snippet source</a> | <a href='#snippet-contenttype' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L40-L52' title='Snippet source file'>snippet source</a> | <a href='#snippet-contenttype' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Results in: 
@@ -106,7 +106,7 @@ public Task Attachment()
     return Verify(attachment);
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L72-L86' title='Snippet source file'>snippet source</a> | <a href='#snippet-attachment' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L71-L85' title='Snippet source file'>snippet source</a> | <a href='#snippet-attachment' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Results in: 
@@ -147,7 +147,7 @@ public Task MailMessage()
     return Verify(mail);
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L193-L206' title='Snippet source file'>snippet source</a> | <a href='#snippet-mailmessage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L192-L205' title='Snippet source file'>snippet source</a> | <a href='#snippet-mailmessage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Results in: 
