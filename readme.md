@@ -17,20 +17,20 @@ https://nuget.org/packages/Verify.MailMessage/
 ## Usage
 
 <!-- snippet: Enable -->
-<a id='snippet-enable'></a>
+<a id='snippet-Enable'></a>
 ```cs
 [ModuleInitializer]
 public static void Initialize() =>
     VerifyMailMessage.Initialize();
 ```
-<sup><a href='/src/Tests/ModuleInitializer.cs#L3-L9' title='Snippet source file'>snippet source</a> | <a href='#snippet-enable' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/ModuleInitializer.cs#L3-L9' title='Snippet source file'>snippet source</a> | <a href='#snippet-Enable' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
 ### ContentDisposition
 
 <!-- snippet: ContentDisposition -->
-<a id='snippet-contentdisposition'></a>
+<a id='snippet-ContentDisposition'></a>
 ```cs
 [Fact]
 public Task ContentDisposition()
@@ -39,7 +39,7 @@ public Task ContentDisposition()
     return Verify(content);
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L7-L16' title='Snippet source file'>snippet source</a> | <a href='#snippet-contentdisposition' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L7-L16' title='Snippet source file'>snippet source</a> | <a href='#snippet-ContentDisposition' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Results in: 
@@ -59,7 +59,7 @@ Results in:
 ### ContentType
 
 <!-- snippet: ContentType -->
-<a id='snippet-contenttype'></a>
+<a id='snippet-ContentType'></a>
 ```cs
 [Fact]
 public Task ContentType()
@@ -71,7 +71,7 @@ public Task ContentType()
     return Verify(content);
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L40-L52' title='Snippet source file'>snippet source</a> | <a href='#snippet-contenttype' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L40-L52' title='Snippet source file'>snippet source</a> | <a href='#snippet-ContentType' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Results in: 
@@ -92,7 +92,7 @@ Results in:
 ### Attachment
 
 <!-- snippet: Attachment -->
-<a id='snippet-attachment'></a>
+<a id='snippet-Attachment'></a>
 ```cs
 [Fact]
 public Task Attachment()
@@ -106,7 +106,7 @@ public Task Attachment()
     return Verify(attachment);
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L71-L85' title='Snippet source file'>snippet source</a> | <a href='#snippet-attachment' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L71-L85' title='Snippet source file'>snippet source</a> | <a href='#snippet-Attachment' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Results in: 
@@ -134,7 +134,7 @@ Results in:
 ### MailMessage
 
 <!-- snippet: MailMessage -->
-<a id='snippet-mailmessage'></a>
+<a id='snippet-MailMessage'></a>
 ```cs
 [Fact]
 public Task MailMessage()
@@ -147,7 +147,7 @@ public Task MailMessage()
     return Verify(mail);
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L192-L205' title='Snippet source file'>snippet source</a> | <a href='#snippet-mailmessage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L192-L205' title='Snippet source file'>snippet source</a> | <a href='#snippet-MailMessage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Results in: 
