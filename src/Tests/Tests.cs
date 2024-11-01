@@ -1,8 +1,4 @@
-﻿using System.Collections.Specialized;
-using System.Net.Mail;
-using System.Net.Mime;
-
-public class Tests
+﻿public class Tests
 {
     #region ContentDisposition
 
@@ -282,7 +278,7 @@ public class Tests
             Body = "The body",
             Headers =
             {
-                new NameValueCollection
+                new()
                 {
                     {
                         "key", "value"
