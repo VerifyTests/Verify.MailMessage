@@ -4,7 +4,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/cpmnux3i0euge195?svg=true)](https://ci.appveyor.com/project/SimonCropp/verify-mailmessage)
 [![NuGet Status](https://img.shields.io/nuget/v/Verify.MailMessage.svg)](https://www.nuget.org/packages/Verify.MailMessage/)
 
-Extends [Verify](https://github.com/VerifyTests/Verify) to allow verification of [MailMessage](https://learn.microsoft.com/en-us/dotnet/api/system.net.mail.mailmessage) and related types.
+Extends [Verify](https://github.com/VerifyTests/Verify) to allow verification of SqlServer bits.<!-- singleLineInclude: intro. path: /docs/intro.include.md -->
 
 **See [Milestones](../../milestones?state=closed) for release notes.**
 
