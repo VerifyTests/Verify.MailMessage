@@ -46,7 +46,7 @@
 
     static void WriteAddresses(VerifyJsonWriter writer, MailMessage mail, MailAddressCollection addresses, string name)
     {
-        if (!addresses.Any())
+        if (addresses.Count == 0)
         {
             return;
         }
